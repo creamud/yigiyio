@@ -4,7 +4,8 @@
   "description": "Local multiplayer browser game inspired by Agar.io",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "deploy:koyeb": "./scripts/deploy-koyeb.sh"
   },
   "keywords": [],
   "author": "",
