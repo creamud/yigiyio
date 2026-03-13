@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <title>Yigiyio</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="overlay" id="joinOverlay">
+        <div class="panel">
+          <p class="eyebrow">Yerel Multiplayer</p>
+          <h1>Yigiyio</h1>
+          <p class="copy">
+            Noktaları ye, büyü, rakipleri kap. Telefonda da bilgisayarda da direkt
+            tarayıcıdan açılacak şekilde tasarlandı.
+          </p>
+          <form id="joinForm" class="join-form">
+            <input
+              id="nameInput"
+              name="name"
+              type="text"
+              maxlength="16"
+              placeholder="Oyuncu adın"
+              autocomplete="off"
+            />
+            <button type="submit">Oyuna Gir</button>
+          </form>
+          <p class="hint">Mobilde joystick, masaüstünde fare ile oynanır.</p>
+        </div>
+      </section>
+
+      <canvas id="game"></canvas>
+
+      <section class="hud top-left">
+        <h2>Kontroller</h2>
+        <p>Masaüstü: fare ile yönel</p>
+        <p>Mobil: sol alttaki joystick'i sürükle</p>
+      </section>
+
+      <section class="hud top-right">
+        <h2>Liderlik</h2>
+        <ol id="leaderboard"></ol>
+      </section>
+
+      <section class="touch-control touch-only" id="joystickWrap">
+        <div class="joystick-base" id="joystickBase">
+          <div class="joystick-knob" id="joystickKnob"></div>
+        </div>
+      </section>
+
+      <section class="touch-actions touch-only">
+        <button class="action-button split" id="splitButton" type="button">Bolun</button>
+        <button class="action-button burst" id="burstButton" type="button">Hiz</button>
+      </section>
+
+      <section class="hud bottom-right">
+        <p id="stats">Baglaniyor...</p>
+      </section>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/main.js"></script>
+  </body>
+</html>

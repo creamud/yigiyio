@@ -1,0 +1,280 @@
+:root {
+  color-scheme: dark;
+  --bg-top: #0d4f54;
+  --bg-bottom: #04242e;
+  --panel: rgba(7, 19, 24, 0.7);
+  --panel-strong: rgba(4, 11, 16, 0.85);
+  --line: rgba(255, 255, 255, 0.08);
+  --text: #eafcff;
+  --muted: #a6d8dc;
+  --accent: #ffbf47;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  overflow: hidden;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, var(--bg-top), var(--bg-bottom) 68%);
+  color: var(--text);
+}
+
+body {
+  touch-action: none;
+}
+
+.shell {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+}
+
+#game {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: linear-gradient(180deg, rgba(2, 9, 14, 0.3), rgba(2, 9, 14, 0.88));
+  backdrop-filter: blur(12px);
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+.panel,
+.hud {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.24);
+}
+
+.panel {
+  width: min(440px, 100%);
+  padding: 28px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+}
+
+h1,
+h2,
+p,
+ol {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 7vw, 4rem);
+  margin-bottom: 12px;
+}
+
+.copy,
+.hint,
+.hud p,
+.hud li {
+  color: var(--muted);
+}
+
+.join-form {
+  display: flex;
+  gap: 12px;
+  margin: 24px 0 12px;
+}
+
+.join-form input,
+.join-form button {
+  min-height: 52px;
+  border-radius: 16px;
+  border: 0;
+  font: inherit;
+}
+
+.join-form input {
+  flex: 1;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+}
+
+.join-form button {
+  padding: 0 20px;
+  background: linear-gradient(135deg, #ffbf47, #ff8b37);
+  color: #1b1400;
+  font-weight: 700;
+}
+
+.hud {
+  position: absolute;
+  z-index: 2;
+  padding: 14px 16px;
+  min-width: 170px;
+}
+
+.top-left {
+  top: 16px;
+  left: 16px;
+}
+
+.top-right {
+  top: 16px;
+  right: 16px;
+  min-width: 200px;
+}
+
+.bottom-right {
+  right: 16px;
+  bottom: 16px;
+}
+
+#leaderboard {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.joystick-base {
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  position: relative;
+}
+
+.joystick-knob {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  left: 31px;
+  top: 31px;
+  background: rgba(255, 191, 71, 0.9);
+  box-shadow: 0 6px 30px rgba(255, 191, 71, 0.32);
+}
+
+.touch-only {
+  display: none;
+}
+
+.touch-control,
+.touch-actions {
+  position: fixed;
+  z-index: 4;
+}
+
+.touch-control {
+  left: 14px;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 78px);
+}
+
+.touch-actions {
+  display: none;
+  right: 14px;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 78px);
+  gap: 10px;
+}
+
+.action-button {
+  min-width: 86px;
+  min-height: 52px;
+  border-radius: 18px;
+  border: 0;
+  color: #06242a;
+  font: inherit;
+  font-weight: 800;
+  touch-action: manipulation;
+}
+
+.action-button.split {
+  background: linear-gradient(135deg, #8bf2c2, #46d5aa);
+}
+
+.action-button.burst {
+  background: linear-gradient(135deg, #ffcf66, #ff8d42);
+}
+
+@media (hover: none), (pointer: coarse) {
+  .touch-only {
+    display: block;
+  }
+
+  .touch-actions {
+    display: flex;
+  }
+
+  .top-left {
+    top: auto;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 86px);
+    left: 142px;
+    max-width: 180px;
+  }
+
+  .panel {
+    padding: 22px;
+  }
+
+  .join-form {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 720px) {
+  .hud {
+    padding: 10px 12px;
+    border-radius: 18px;
+  }
+
+  .top-right {
+    min-width: 160px;
+    max-width: 45vw;
+  }
+
+  .bottom-right {
+    left: 16px;
+    right: auto;
+    bottom: 210px;
+    max-width: 230px;
+  }
+}
+
+@media (max-width: 480px) {
+  .touch-control {
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 92px);
+    left: 12px;
+  }
+
+  .touch-actions {
+    right: 12px;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 92px);
+  }
+
+  .top-left {
+    left: 128px;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 100px);
+    max-width: 156px;
+  }
+
+  .bottom-right {
+    bottom: 226px;
+  }
+}
